@@ -8,28 +8,33 @@ let onAdd = false;
 
 function appendCard(i) {
   let newdiv = document.createElement('div');
+  let imgContainer = document.createElement('div'); // New container for the image
   let img = document.createElement('img');
   let p = document.createElement('p');
   
   newdiv.className = 'card';
+  imgContainer.className = 'image-container'; // New class for the image container
   img.src = songs[i].img;
   p.textContent = songs[i].name;
   
   container.appendChild(newdiv);
-  newdiv.appendChild(img);
+  newdiv.appendChild(imgContainer); // Append the image container
+  imgContainer.appendChild(img); // Append the image to the container
   newdiv.appendChild(p);
   
   newdiv.addEventListener('click', function() {
     // Deactivate all songs
-   if(!onAdd)
-    { songs.forEach(song => song.isActive = false);
-    
-    // Activate the current song
-    songs[i].isActive = true;
-    
-    renderActiveSong();}
+    if (!onAdd) {
+      songs.forEach(song => song.isActive = false);
+      
+      // Activate the current song
+      songs[i].isActive = true;
+      
+      renderActiveSong();
+    }
   });
 }
+
 
 function renderActiveSong() {
   const activeSong = songs.find(song => song.isActive);
@@ -67,6 +72,7 @@ fetch('http://localhost:3000/data')
   .then(response => response.json())
   .then(data => {
     songs = data;
+    console.log(songs.length);
     displaySongs();
   })
   .catch(error => {

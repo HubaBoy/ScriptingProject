@@ -1,97 +1,97 @@
 [
     {
       "name": "despacito",
-      "img": "music.jpg",
+      "img": "despacito.png",
       "song": "song.mp3",
       "isActive": false
     },
     {
       "name": "All star",
-      "img": "music.jpg",
+      "img": "All Star.jpg",
       "song": "song1.mp3",
       "isActive": false
     },
     {
         "name": "Sen Trope",
-        "img": "music.jpg",
+        "img": "Sen Trope.jpg",
         "song": "Sentrope.mp3",
         "isActive": false
     },
     {
         "name": "10 leva davam",
-        "img": "music.jpg",
+        "img": "10 leva.jpg",
         "song": "10 leva davam.mp3",
         "isActive": false
     },
     {
         "name": "Te Amo",
-        "img": "music.jpg",
+        "img": "Te amo.jpg",
         "song": "te amo.mp3",
         "isActive": false
     },
     {
         "name": "shake it off",
-        "img": "music.jpg",
+        "img": "Shake it off.jpg",
         "song": "shake it off.mp3",
         "isActive": false
     },
     {
         "name": "future - life is good",
-        "img": "music.jpg",
+        "img": "Life is good.jpg",
         "song": "life is good.mp3",
         "isActive": false
     },
     {
         "name": "Rap god",
-        "img": "music.jpg",
+        "img": "Rap god.jpg",
         "song": "rap god.mp3",
         "isActive": false
     },
     {
         "name": "Not afraid",
-        "img": "music.jpg",
+        "img": "not Afraid.jpg",
         "song": "Not afraid.mp3",
         "isActive": false
     },
     {
         "name": "FRIENDS",
-        "img": "music.jpg",
+        "img": "FRIENDS.jpg",
         "song": "FRIENDS.mp3",
         "isActive": false
     },
     {
         "name": "Old Town Road",
-        "img": "music.jpg",
+        "img": "Old Town Road.jpg",
         "song": "Old Town Road.mp3",
         "isActive": false
     },
     {
         "name": "Holiday",
-        "img": "music.jpg",
+        "img": "Holiday.jpg",
         "song": "Holiday.mp3",
         "isActive": false
     },
     {
         "name": "Till i collapse",
-        "img": "music.jpg",
+        "img": "Till i collapse.jpg",
         "song": "Till i collapse.mp3",
         "isActive": false
     },
     {
         "name": "Dom Dom Yes Yes",
-        "img": "music.jpg",
+        "img": "Dom Dom Yes Yes.jpg",
         "song": "Dom Dom Yes Yes.mp3",
         "isActive": false
     },
     {
         "name": "Stari rani",
-        "img": "music.jpg",
+        "img": "Stari rani.jpg",
         "song": "Stari rani.mp3",
         "isActive": false
     },
     {
         "name": "Jiva rana",
-        "img": "music.jpg",
+        "img": "Jiva rana.jpg",
         "song": "Jiva rana.mp3",
         "isActive": false
     }

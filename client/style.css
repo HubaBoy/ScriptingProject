@@ -68,10 +68,10 @@ body{
     margin: 0;
 }
 
-.card{
-  min-height: 32dvh;
-  max-height: 35dvh;
-  max-width: 10dhv;
+.card {
+  min-height: 32vh;
+  max-height: 35vh;
+  width: 27vh; /* Adjust the value to your desired width */
   background-color: #fe9000;
   align-items: center;
   margin: 1%;
@@ -83,19 +83,27 @@ body{
   user-select: none;
 }
 
-.card:hover{
+.card:hover {
   border: solid black 3px;
   zoom: 103%;
+  margin: 0.619%;
 }
 
-.card p{
+.card p {
   text-align: center;
 }
 
-.card img{
+.card .image-container {
   width: 100%;
   height: 70%;
 }
+
+.card .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 .upload{
   position: fixed;
