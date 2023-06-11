@@ -61,7 +61,7 @@ function displaySongs() {
 function displayUploadBar() {
   const uploadBar = document.querySelector('.upload');
   if (uploadBar.style.display === 'none') {
-    uploadBar.style.display = 'block';
+    uploadBar.style.display = 'flex';
     onAdd = true;
   } else {
     uploadBar.style.display = 'none';

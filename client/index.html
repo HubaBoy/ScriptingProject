@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Movie site</title>
+    <title>Music site</title>
 </head>
 <body>
     <div class="top-nav">
@@ -24,8 +24,21 @@
     </div>
 
     <div class="upload">
-
-    </div>  
+        <form>
+          <label for="musicInput" class="file-input-label">
+            <span class="file-input-button">Choose Audio File</span>
+            <span id="musicFileName">No file selected</span>
+            <input id="musicInput" type="file" name="UploadAudio" accept="audio/mp3">
+          </label>
+          <label for="imageInput" class="file-input-label">
+            <span class="file-input-button">Choose Image File</span>
+            <span id="imageFileName">No file selected</span>
+            <input id="imageInput" type="file" accept="image/png, image/jpeg">
+          </label>
+        </form>
+        <button>Upload!</button>
+      </div>
+      
 
     <script src="java.js"></script>
 </body>
