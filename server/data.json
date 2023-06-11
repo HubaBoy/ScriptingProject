@@ -1,0 +1,98 @@
+[
+    {
+      "name": "despacito",
+      "img": "music.jpg",
+      "song": "song.mp3",
+      "isActive": false
+    },
+    {
+      "name": "All star",
+      "img": "music.jpg",
+      "song": "song1.mp3",
+      "isActive": false
+    },
+    {
+        "name": "Sen Trope",
+        "img": "music.jpg",
+        "song": "Sentrope.mp3",
+        "isActive": false
+    },
+    {
+        "name": "10 leva davam",
+        "img": "music.jpg",
+        "song": "10 leva davam.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Te Amo",
+        "img": "music.jpg",
+        "song": "te amo.mp3",
+        "isActive": false
+    },
+    {
+        "name": "shake it off",
+        "img": "music.jpg",
+        "song": "shake it off.mp3",
+        "isActive": false
+    },
+    {
+        "name": "future - life is good",
+        "img": "music.jpg",
+        "song": "life is good.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Rap god",
+        "img": "music.jpg",
+        "song": "rap god.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Not afraid",
+        "img": "music.jpg",
+        "song": "Not afraid.mp3",
+        "isActive": false
+    },
+    {
+        "name": "FRIENDS",
+        "img": "music.jpg",
+        "song": "FRIENDS.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Old Town Road",
+        "img": "music.jpg",
+        "song": "Old Town Road.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Holiday",
+        "img": "music.jpg",
+        "song": "Holiday.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Till i collapse",
+        "img": "music.jpg",
+        "song": "Till i collapse.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Dom Dom Yes Yes",
+        "img": "music.jpg",
+        "song": "Dom Dom Yes Yes.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Stari rani",
+        "img": "music.jpg",
+        "song": "Stari rani.mp3",
+        "isActive": false
+    },
+    {
+        "name": "Jiva rana",
+        "img": "music.jpg",
+        "song": "Jiva rana.mp3",
+        "isActive": false
+    }
+  ]
