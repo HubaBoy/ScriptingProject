@@ -33,8 +33,15 @@ body{
   zoom: 110%;
 }
 
+.middle-nav{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .bottom-nav{
   position: fixed;
+  z-index: 999;
   background-color:  #5ADBFF;
   display: flex;
   justify-content: center;
@@ -114,7 +121,6 @@ body{
   width: 100%;
   top: 10dvh;
   position: absolute;
-  z-index: 999;
 }
 
 

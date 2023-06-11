@@ -4,6 +4,7 @@ const container = document.getElementById('container');
 const bottomContainer = document.getElementById('bottom-container');
 const audioElement = document.getElementById('audio');
 const addButton = document.getElementById('add');
+const middleNav = document.getElementById('middle-nav');
 let onAdd = false;
 
 function appendCard(i) {
@@ -21,6 +22,7 @@ function appendCard(i) {
   newdiv.appendChild(imgContainer); // Append the image container
   imgContainer.appendChild(img); // Append the image to the container
   newdiv.appendChild(p);
+  middleNav.appendChild(newdiv);
   
   newdiv.addEventListener('click', function() {
     // Deactivate all songs
@@ -62,9 +64,11 @@ function displayUploadBar() {
   const uploadBar = document.querySelector('.upload');
   if (uploadBar.style.display === 'none') {
     uploadBar.style.display = 'flex';
+    middleNav.style.display = 'none';
     onAdd = true;
   } else {
     uploadBar.style.display = 'none';
+    middleNav.style.display = 'flex';
     onAdd = false;
   }
 }
