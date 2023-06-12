@@ -6,6 +6,7 @@ const multer = require("multer");
 const path = require('path');
 const upload = multer({ dest: "uploads/" });
 const uploadPath = path.join(__dirname, 'uploads');
+const fs = require("fs");
 
 let data;
 
@@ -20,6 +21,7 @@ app.post("/upload_files", upload.single("UploadAudio"), (req, res) => {
 
   fs.rename(req.file.path, uploadedFilePath, (err) => {
     if (err) {
+      console.log(500);
       return res.status(500).json({ message: "Error saving the file" });
     }
 
@@ -43,6 +45,17 @@ app.get('/data', (req, res) => {
 app.get('/', (req, res) => {
   const jsonLines = JSON.stringify(data, null, 2).split('\n');
   res.send(jsonLines.join('<br>'));
+});
+
+app.get('/uploads/:filename', (req, res) => {
+  const filePath = path.join(uploadPath, req.params.filename);
+  fs.readFile(filePath, 'utf-8', (err, fileData) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Error reading the file" });
+    }
+    res.send(fileData);
+  });
 });
 
 app.listen(port, () => {
