@@ -10,22 +10,39 @@ const fs = require("fs");
 
 let data;
 
-app.post("/upload_files", upload.single("UploadAudio"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: "No file uploaded" });
+app.post("/upload_files", upload.fields([
+  { name: 'UploadAudio', maxCount: 1 },
+  { name: 'UploadImage', maxCount: 1 }
+]), (req, res) => {
+  if (!req.files || !req.files['UploadAudio'] || !req.files['UploadImage']) {
+    return res.status(400).json({ message: "Please upload both audio and image files" });
   }
 
-  // Move the file to the desired location with its original name and extension
-  const originalFileName = req.file.originalname;
-  const uploadedFilePath = path.join(__dirname, "uploads", originalFileName);
+  const audioFile = req.files['UploadAudio'][0];
+  const imageFile = req.files['UploadImage'][0];
 
-  fs.rename(req.file.path, uploadedFilePath, (err) => {
+  const audioFileName = audioFile.originalname;
+  const uploadedAudioPath = path.join(__dirname, "uploads", audioFileName);
+  console.log(uploadedAudioPath);
+
+  const imageFileName = imageFile.originalname;
+  const uploadedImagePath = path.join(__dirname, "uploads", imageFileName);
+  console.log(uploadedImagePath);
+
+  fs.rename(audioFile.path, uploadedAudioPath, (err) => {
     if (err) {
-      console.log(500);
-      return res.status(500).json({ message: "Error saving the file" });
+      console.log(err);
+      return res.status(500).json({ message: "Error saving the audio file" });
     }
 
-    res.json({ message: "File uploaded successfully" });
+    fs.rename(imageFile.path, uploadedImagePath, (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Error saving the image file" });
+      }
+
+      res.json({ message: "Files uploaded successfully" });
+    });
   });
 });
 
