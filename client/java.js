@@ -1,3 +1,4 @@
+
 let songs = [];
 
 const container = document.getElementById('container');
@@ -6,6 +7,23 @@ const audioElement = document.getElementById('audio');
 const addButton = document.getElementById('add');
 const middleNav = document.getElementById('middle-nav');
 let onAdd = false;
+
+const uploadButton = document.getElementById('uploadButton');
+const musicFileName = document.getElementById('musicFileName');
+const musicInput = document.getElementById('musicInput');
+musicInput.onchange = () => {
+  const selectedSong = musicInput.files[0];
+  console.log(selectedSong);
+  musicFileName.textContent = selectedSong.name;
+}
+
+const imageFileName = document.getElementById('imageFileName');
+const imageInput = document.getElementById('imageInput');
+imageInput.onchange = () => {
+  const selectedImage = imageInput.files[0];
+  console.log(selectedImage);
+  imageFileName.textContent = selectedImage.name;
+}
 
 function appendCard(i) {
   let newdiv = document.createElement('div');
@@ -90,4 +108,19 @@ fetch('http://localhost:3000/data')
     displayUploadBar();
 });
   
-  
+uploadButton.addEventListener('click', () => {
+  console.log('clicked');
+  const formData = new FormData();
+  if (!musicInput.files[0]) {
+    console.log('Please select a file');
+  } else {
+    formData.append(musicInput.name, musicInput.files[0]);
+    fetch("http://localhost:3000/upload_files", {
+      method: 'POST',
+      body: formData,
+      mode: 'cors', // Add this line to enable CORS
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log("Error occurred:", err));
+  }
+});

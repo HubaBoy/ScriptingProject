@@ -30,19 +30,19 @@
 
 
     <div class="upload">
-        <form>
-          <label for="musicInput" class="file-input-label">
-            <span class="file-input-button">Choose Audio File</span>
-            <span id="musicFileName">No file selected</span>
-            <input id="musicInput" type="file" name="UploadAudio" accept="audio/mp3">
-          </label>
-          <label for="imageInput" class="file-input-label">
-            <span class="file-input-button">Choose Image File</span>
-            <span id="imageFileName">No file selected</span>
-            <input id="imageInput" type="file" accept="image/png, image/jpeg">
-          </label>
-        </form>
-        <button>Upload!</button>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="musicInput" class="file-input-label">
+              <span class="file-input-button">Choose Audio File</span>
+              <span id="musicFileName">No file selected</span>
+              <input id="musicInput" type="file" name="UploadAudio" accept="audio/mp3">
+            </label>
+            <label for="imageInput" class="file-input-label">
+              <span class="file-input-button">Choose Image File</span>
+              <span id="imageFileName">No file selected</span>
+              <input id="imageInput" type="file" accept="image/png, image/jpeg">
+            </label>
+          </form>          
+        <button id="uploadButton">Upload!</button>
       </div>
       
 
