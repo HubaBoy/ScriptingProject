@@ -14,7 +14,7 @@ app.post("/upload_files", upload.fields([
   { name: 'UploadAudio', maxCount: 1 },
   { name: 'UploadImage', maxCount: 1 }
 ]), (req, res) => {
-  if (!req.files || !req.files['UploadAudio'] || !req.files['UploadImage']) {
+  if (!req.files || !req.files['UploadAudio']) {
     return res.status(400).json({ message: "Please upload both audio and image files" });
   }
 
@@ -25,26 +25,30 @@ app.post("/upload_files", upload.fields([
   const uploadedAudioPath = path.join(__dirname, "uploads", audioFileName);
   console.log(uploadedAudioPath);
 
-  const imageFileName = imageFile.originalname;
-  const uploadedImagePath = path.join(__dirname, "uploads", imageFileName);
-  console.log(uploadedImagePath);
-
   fs.rename(audioFile.path, uploadedAudioPath, (err) => {
     if (err) {
       console.log(err);
       return res.status(500).json({ message: "Error saving the audio file" });
     }
-
-    fs.rename(imageFile.path, uploadedImagePath, (err) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({ message: "Error saving the image file" });
-      }
-
-      res.json({ message: "Files uploaded successfully" });
-    });
+  
+    if (req.files['UploadImage']) {
+      const imageFileName = imageFile.originalname;
+      const uploadedImagePath = path.join(__dirname, "uploads", imageFileName);
+      console.log(uploadedImagePath);
+      fs.rename(imageFile.path, uploadedImagePath, (err) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({ message: "Error saving the image file" });
+        }
+  
+        res.json({ message: "Files uploaded successfully" });
+      });
+    } else {
+      res.json({ message: "Audio file uploaded successfully" });
+    }
   });
 });
+
 
 
 try {
