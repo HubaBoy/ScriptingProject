@@ -102,8 +102,6 @@ fetch('http://localhost:3000/data')
   })
 
 
-
-
   addButton.addEventListener('click', () => {
     displayUploadBar();
 });
@@ -115,6 +113,10 @@ uploadButton.addEventListener('click', () => {
     console.log('Please select a file');
   } else {
     formData.append(musicInput.name, musicInput.files[0]);
+    if(imageInput.files[0])
+    {
+      formData.append(imageInput.name, imageInput.files[0])
+    }
     fetch("http://localhost:3000/upload_files", {
       method: 'POST',
       body: formData,

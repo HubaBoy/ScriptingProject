@@ -34,6 +34,7 @@ body{
 }
 
 .middle-nav{
+  margin-left: 6dvh;
   display: flex;
   flex-wrap: wrap;
   width: 100%;

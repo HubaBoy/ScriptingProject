@@ -4,50 +4,75 @@ const cors = require('cors');
 const port = 3000;
 const multer = require("multer");
 const path = require('path');
-const upload = multer({ dest: "uploads/" });
-const uploadPath = path.join(__dirname, 'uploads');
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: "uploads/",
+    filename: (req, file, callback) => {
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      callback(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
+    },
+  }),
+});
 const fs = require("fs");
 
 let data;
 
-app.post("/upload_files", upload.fields([
-  { name: 'UploadAudio', maxCount: 1 },
-  { name: 'UploadImage', maxCount: 1 }
-]), (req, res) => {
-  if (!req.files || !req.files['UploadAudio']) {
-    return res.status(400).json({ message: "Please upload both audio and image files" });
-  }
-
-  const audioFile = req.files['UploadAudio'][0];
-  const imageFile = req.files['UploadImage'][0];
-
-  const audioFileName = audioFile.originalname;
-  const uploadedAudioPath = path.join(__dirname, "uploads", audioFileName);
-  console.log(uploadedAudioPath);
-
-  fs.rename(audioFile.path, uploadedAudioPath, (err) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).json({ message: "Error saving the audio file" });
-    }
-  
-    if (req.files['UploadImage']) {
-      const imageFileName = imageFile.originalname;
-      const uploadedImagePath = path.join(__dirname, "uploads", imageFileName);
-      console.log(uploadedImagePath);
-      fs.rename(imageFile.path, uploadedImagePath, (err) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ message: "Error saving the image file" });
-        }
-  
-        res.json({ message: "Files uploaded successfully" });
-      });
-    } else {
-      res.json({ message: "Audio file uploaded successfully" });
-    }
-  });
+app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
 });
+
+const uploadPath = "/path/to/upload/directory";
+
+app.post(
+  "/upload_files",
+  upload.fields([
+    { name: "audioFile", maxCount: 1 },
+    { name: "imageFile", maxCount: 1 }
+  ]),
+  (req, res) => {
+    if (!req.files || Object.keys(req.files).length < 2) {
+      return res.status(400).json({ message: "Please upload both audio and image files" });
+    }
+
+    const audioFile = req.files["audioFile"][0];
+    const imageFile = req.files["imageFile"] ? req.files["imageFile"][0] : null;
+
+    const audioFileName = audioFile.originalname;
+    const uploadedAudioPath = path.join(uploadPath, audioFileName);
+    console.log(uploadedAudioPath);
+
+    fs.rename(audioFile.path, uploadedAudioPath, (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Error saving the audio file" });
+      }
+
+      if (imageFile) {
+        const imageFileName = imageFile.originalname;
+        const uploadedImagePath = path.join(uploadPath, imageFileName);
+        console.log(uploadedImagePath);
+
+        fs.rename(imageFile.path, uploadedImagePath, (err) => {
+          if (err) {
+            console.log(err);
+            // Rollback: Delete the already uploaded audio file
+            fs.unlink(uploadedAudioPath, () => {
+              return res.status(500).json({ message: "Error saving the image file" });
+            });
+          }
+
+          // Both audio and image files uploaded successfully
+          res.json({ message: "Audio and image files uploaded successfully" });
+        });
+      } else {
+        // Only audio file uploaded
+        res.json({ message: "Audio file uploaded successfully" });
+      }
+    });
+  }
+);
 
 
 
@@ -57,7 +82,6 @@ try {
   console.log("Can't reach the data");
 }
 
-app.use(cors()); // Enable CORS
 
 app.get('/data', (req, res) => {
   res.json(data);
@@ -82,3 +106,4 @@ app.get('/uploads/:filename', (req, res) => {
 app.listen(port, () => {
   console.log('Server is running on port ' + port);
 });
+
